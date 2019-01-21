@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="10dp">
+
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Email"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Password"/>
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Remember me"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:gravity="right"
+        android:layout_height="wrap_content"
+        android:text="Recover account"
+        />
+    <Button
+        android:id="@+id/button_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Login"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Continue with social account"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="20dp"
+        android:gravity="center_horizontal">
+        <Button
+            android:id="@+id/button_google_login"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="GOOGLE"/>
+        <Button
+            android:id="@+id/button_facebook_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Facebook"/>
+
+    </LinearLayout>
+
+    <TextView
+
+        android:id="@+id/textview_option_register"
+        android:gravity="center_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Register"/>
+
+
+</LinearLayout>
