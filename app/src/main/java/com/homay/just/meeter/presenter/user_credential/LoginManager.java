@@ -5,15 +5,23 @@ import android.util.Log;
 
 import com.homay.just.meeter.db.firebase_helper.FirebaseLoginCallbacks;
 import com.homay.just.meeter.db.firebase_helper.FirebaseLoginHandler;
-import com.homay.just.meeter.ui.splash.StartupActivityCallback;
+import com.homay.just.meeter.presenter.MainPresenter;
+import com.homay.just.meeter.presenter.MainPresenterInterface;
+import com.homay.just.meeter.presenter.activity.starter.StartupActivityCallback;
 
 public class LoginManager implements StartupActivityCallback, FirebaseLoginCallbacks {
     private String TAG = "LoginManager";
 
-LoginManagerCallback loginManagerCallback;
+private LoginManagerCallback loginManagerCallback;
 FirebaseLoginHandler firebaseLoginHandler;
 
+
+
+    //LoginState callback
+    LoginStateCallback loginStateCallback;
+
     public LoginManager() {
+
 firebaseLoginHandler = new FirebaseLoginHandler();
 this.loginManagerCallback = firebaseLoginHandler;
         firebaseLoginHandler.setFirebaseLoginCallbacks(this);
@@ -49,25 +57,34 @@ loginManagerCallback.onSignUp(username,password);
 
     //FirebaseLoginCallbacks
     @Override
-    public void onLoginSuccess() {
-        Log.i(TAG, "onLoginSuccess: ");
+    public void onLoginSuccess(String message) {
+        Log.i(TAG, "onLoginSuccess: "+ message);
+
+        loginStateCallback.onLoginSuccess(message);
     }
 
     @Override
-    public void onLoginFailed() {
-        Log.i(TAG, "onLoginFailed: ");
+    public void onLoginFailed(String message) {
+        Log.i(TAG, "onLoginFailed: "+message);
+        loginStateCallback.onLoginFailed(message);
     }
 
     @Override
-    public void onSignUpSuccess() {
-        Log.i(TAG, "onSignUpSuccess: ");
+    public void onSignUpSuccess(String message) {
+        Log.i(TAG, "onSignUpSuccess: "+message);
+        loginStateCallback.onSignUpSuccess(message);
     }
 
     @Override
-    public void onSignUpFailed() {
-        Log.i(TAG, "onSignUpFailed: ");
+    public void onSignUpFailed(String message) {
+        Log.i(TAG, "onSignUpFailed: "+message);
+        loginStateCallback.onSignUpFailed(message);
     }
 
+    //set LoginState callback
+    public void setloginStateCallback(LoginStateCallback loginStateCallback) {
+        this.loginStateCallback = loginStateCallback;
+    }
 
 }
 

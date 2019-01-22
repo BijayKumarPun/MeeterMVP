@@ -1,4 +1,4 @@
-package com.homay.just.meeter.ui.splash;
+package com.homay.just.meeter.presenter.activity.starter;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -8,9 +8,16 @@ import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import com.homay.just.meeter.R;
-import com.homay.just.meeter.presenter.user_credential.LoginManager;
 
-public class StartupActivity extends AppCompatActivity implements SplashFragmentCallback {
+import com.homay.just.meeter.presenter.MainPresenter;
+import com.homay.just.meeter.presenter.MainPresenterInterface;
+import com.homay.just.meeter.presenter.user_credential.LoginManager;
+import com.homay.just.meeter.presenter.user_credential.LoginStateCallback;
+import com.homay.just.meeter.ui.splash.FragmentLogin;
+import com.homay.just.meeter.ui.splash.FragmentSignUp;
+import com.homay.just.meeter.ui.splash.SplashFragmentCallback;
+
+public class StartupActivity extends AppCompatActivity implements SplashFragmentCallback,LoginStateCallback {
     FrameLayout frameLayoutContainer;
     FragmentManager fragmentManager;
     FragmentLogin fragmentLogin;
@@ -18,7 +25,13 @@ public class StartupActivity extends AppCompatActivity implements SplashFragment
 
     //LoginManager
     LoginManager loginManager;
+    LoginStateCallback loginStateCallback;
     StartupActivityCallback startupActivityCallback;
+
+    //MainPresenter
+    MainPresenter mainPresenter;
+    MainPresenterInterface mainPresenterInterface;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -39,9 +52,17 @@ public class StartupActivity extends AppCompatActivity implements SplashFragment
 
         //LoginManager
         loginManager = new LoginManager();
+       loginManager.setloginStateCallback(this);
 
         //set callbacks on StartupActivityCallback
         startupActivityCallback = loginManager;
+
+        //MainPresenter
+        mainPresenter = new MainPresenter();
+        mainPresenterInterface = mainPresenter;
+
+
+
     }
 
     private void displaySignInMenu() {
@@ -79,5 +100,33 @@ public class StartupActivity extends AppCompatActivity implements SplashFragment
     @Override
     public void onSignIn() {
         displaySignInMenu();
+    }
+
+
+
+    //Login state callbacks
+
+    @Override
+    public void onLoginSuccess(String message) {
+        Toast.makeText(this, " "+message, Toast.LENGTH_SHORT).show();
+        mainPresenterInterface.startHomeActivity(this);
+    }
+
+    @Override
+    public void onLoginFailed(String message) {
+        Toast.makeText(this, ""+message, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onSignUpSuccess(String message) {
+        Toast.makeText(this, ""+message, Toast.LENGTH_SHORT).show();
+
+    }
+
+    @Override
+    public void onSignUpFailed(String message) {
+        Toast.makeText(this, ""+message, Toast.LENGTH_SHORT).show();
+
+
     }
 }

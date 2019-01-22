@@ -24,6 +24,7 @@ public FirebaseLoginHandler() {
     @Override
     public void onSignUp(String username, String password) {
         Log.i(TAG, "onSignUp: ");
+        signUpUser(username, password);
     }
 
     @Override
@@ -37,8 +38,17 @@ public FirebaseLoginHandler() {
     }
 
     private void loginUser() {
+    //TODO Do the login stuff here and send back the result
+
         Log.i(TAG, "loginUser: Successful");
-        firebaseLoginCallbacks.onLoginSuccess();
+        firebaseLoginCallbacks.onLoginSuccess("This is a message from onLoginSuccess");
+
+    }
+
+    private void signUpUser(String username, String password){
+    //TODO Do the signup stuff here and send back the result
+
+    firebaseLoginCallbacks.onSignUpFailed("This is a message from onSignUpFailed");
 
     }
 

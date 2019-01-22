@@ -1,10 +1,8 @@
 package com.homay.just.meeter.db.firebase_helper;
 
-public interface FirebaseLoginCallbacks {
+import com.homay.just.meeter.presenter.user_credential.LoginStateCallback;
 
-    void onLoginSuccess();
-    void onLoginFailed();
+public interface FirebaseLoginCallbacks extends LoginStateCallback {
 
-    void onSignUpSuccess();
-    void onSignUpFailed();
+
 }

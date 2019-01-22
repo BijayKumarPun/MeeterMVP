@@ -1,4 +1,4 @@
-package com.homay.just.meeter.ui.splash;
+package com.homay.just.meeter.presenter.activity.starter;
 
 import com.homay.just.meeter.BaseCredentialInterface;
 
