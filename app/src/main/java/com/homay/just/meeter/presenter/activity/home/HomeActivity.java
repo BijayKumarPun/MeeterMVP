@@ -12,21 +12,29 @@ import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import com.homay.just.meeter.R;
+import com.homay.just.meeter.db.models.FeedModel;
 import com.homay.just.meeter.db.models.UserModel;
+import com.homay.just.meeter.db.network_handler.FeedDownloader;
+import com.homay.just.meeter.db.network_handler.FeedDownloaderCallback;
+import com.homay.just.meeter.db.network_handler.FeedRequests;
 import com.homay.just.meeter.presenter.MainPresenter;
 import com.homay.just.meeter.presenter.MainPresenterInterface;
 import com.homay.just.meeter.presenter.helper.Profiler;
 import com.homay.just.meeter.presenter.helper.ProfilerCallback;
 import com.homay.just.meeter.ui.composer.ComposerFrag;
+import com.homay.just.meeter.ui.feeds.FeedActions;
 import com.homay.just.meeter.ui.feeds.FeedFrag;
+import com.homay.just.meeter.ui.feeds.FeedFragCC;
 import com.homay.just.meeter.ui.profile.ProfileFrag;
+
+import java.util.ArrayList;
 
 //This activity is started after successful signin
 
 //TODO
 //TODO Downoad user profile
 
-public class HomeActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener, ProfilerCallback {
+public class HomeActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener, ProfilerCallback,FeedActions, FeedDownloaderCallback {
     private String TAG = "HomeActivity";
     //Profiler
     Profiler profiler;
@@ -52,6 +60,14 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
     //Current user
     UserModel currentUserModel;
     Bundle currentUserModelBundle;
+
+    //FeedDownloader to download feeds
+    FeedDownloader feedDownloader;
+
+    FeedRequests feedRequests;
+
+    //FeedCC to communicate with FeedFrag
+    FeedFragCC feedFragCC;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -92,6 +108,18 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
         //onstart
         startFeedFragment();
 
+        //FeedDownloader to download feeds
+        feedDownloader = new FeedDownloader();
+        feedRequests = feedDownloader;
+
+        feedDownloader.setFeedDownloaderCallback(this);
+
+
+        //FeedFragCC
+        feedFragCC = feedFrag;
+
+        //FeedActions interface
+        feedFrag.setFeedActionsInterface(this);
 
 
     }
@@ -168,7 +196,25 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
 
     }
 
-    //Load Fragments
+
+    //FeedActions interface implementaton
+    @Override
+    public void getFeed() {
+        Log.i(TAG, "getFeed: ");
+
+        feedRequests.getFeed();
+
+    }
 
 
+    //FeedDownloader callback
+    @Override
+    public void onFeedDownloadSuccess(String message, ArrayList<FeedModel> feedModels) {
+        feedFragCC.onFeedRetrieveSuccess(message, feedModels);
+    }
+
+    @Override
+    public void onFeedDownloadFail(String message) {
+        feedFragCC.onFeedRetrieveFail(message);
+    }
 }

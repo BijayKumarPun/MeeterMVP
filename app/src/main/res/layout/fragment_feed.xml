@@ -3,9 +3,9 @@
     android:background="#fff"
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Hello from Feed"/>
+<android.support.v7.widget.RecyclerView
+    android:layout_width="match_parent"
+    android:id="@+id/recyclerView_feed_container"
+    android:layout_height="match_parent"/>
 
 </android.support.constraint.ConstraintLayout>
