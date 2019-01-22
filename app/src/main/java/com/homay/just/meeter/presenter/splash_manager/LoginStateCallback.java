@@ -1,4 +1,4 @@
-package com.homay.just.meeter.presenter.user_credential;
+package com.homay.just.meeter.presenter.splash_manager;
 
 public interface LoginStateCallback {
     void onLoginSuccess(String message);

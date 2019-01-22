@@ -1,7 +1,6 @@
-package com.homay.just.meeter.presenter.user_credential;
+package com.homay.just.meeter.presenter.splash_manager;
 
 import com.homay.just.meeter.BaseCredentialInterface;
-import com.homay.just.meeter.presenter.MainPresenterInterface;
 
 public interface LoginManagerCallback extends BaseCredentialInterface{
 

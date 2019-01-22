@@ -2,7 +2,7 @@ package com.homay.just.meeter.db.firebase_helper;
 
 import android.util.Log;
 
-import com.homay.just.meeter.presenter.user_credential.LoginManagerCallback;
+import com.homay.just.meeter.presenter.splash_manager.LoginManagerCallback;
 
 public class FirebaseLoginHandler implements LoginManagerCallback {
     private String TAG = "FirebaseLoginHadler";

@@ -11,8 +11,8 @@ import com.homay.just.meeter.R;
 
 import com.homay.just.meeter.presenter.MainPresenter;
 import com.homay.just.meeter.presenter.MainPresenterInterface;
-import com.homay.just.meeter.presenter.user_credential.LoginManager;
-import com.homay.just.meeter.presenter.user_credential.LoginStateCallback;
+import com.homay.just.meeter.presenter.splash_manager.LoginManager;
+import com.homay.just.meeter.presenter.splash_manager.LoginStateCallback;
 import com.homay.just.meeter.ui.splash.FragmentLogin;
 import com.homay.just.meeter.ui.splash.FragmentSignUp;
 import com.homay.just.meeter.ui.splash.SplashFragmentCallback;

@@ -1,12 +1,10 @@
-package com.homay.just.meeter.presenter.user_credential;
+package com.homay.just.meeter.presenter.splash_manager;
 
 
 import android.util.Log;
 
 import com.homay.just.meeter.db.firebase_helper.FirebaseLoginCallbacks;
 import com.homay.just.meeter.db.firebase_helper.FirebaseLoginHandler;
-import com.homay.just.meeter.presenter.MainPresenter;
-import com.homay.just.meeter.presenter.MainPresenterInterface;
 import com.homay.just.meeter.presenter.activity.starter.StartupActivityCallback;
 
 public class LoginManager implements StartupActivityCallback, FirebaseLoginCallbacks {
